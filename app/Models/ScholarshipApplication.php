@@ -12,13 +12,6 @@ class ScholarshipApplication extends Model
     protected $fillable = [
         'user_id',
         'scholarship_id',
-        'full_name',
-        'date_of_birth',
-        'gender',
-        'nationality',
-        'contact_email',
-        'phone_number',
-        'address',
         'current_institution',
         'program_of_study',
         'current_gpa',

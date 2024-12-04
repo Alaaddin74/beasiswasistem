@@ -10,7 +10,7 @@
                 </div>
 
                 <!-- Primary Navigation -->
-                @if($user->role === 'user')
+                @if(auth()->user()->role === 'user')
                 <div class="hidden md:flex items-center space-x-1">
                     <a href="#" class="py-4 px-2 text-gray-500 hover:text-gray-900 transition duration-300">Home</a>
                     <a href="#" class="py-4 px-2 text-gray-500 hover:text-gray-900 transition duration-300">About</a>

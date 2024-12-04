@@ -6,6 +6,11 @@
 
 <div class="space-y-12 ml-10">
     <div class="border-b border-gray-900/10 pb-12">
+        @if (session('success'))
+            <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mx-4 mt-4" role="alert">
+                <span class="block sm:inline">{{ session('success') }}</span>
+            </div>
+        @endif
         <form action="{{ route('storeProfile') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="border-b border-gray-900/10 pb-12">
@@ -30,7 +35,7 @@
                                 <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                             </svg>
                         </div>
-                        <input datepicker id="birthday" name="birthday" type="text"  value="{{ old('birthday',$user->date_of_birth) }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 " placeholder="Select date">
+                        <input id="birthday" name="birthday" type="date"  value="{{ old('birthday',$user->date_of_birth) }}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 " placeholder="Select date">
                         @error('birthday')
                              <span class="text-red-500 text-sm">{{ $message }}</span>
                         @enderror
@@ -56,13 +61,14 @@
                 </div>
 
                 <div class="sm:col-span-3">
-                    <label for="country" class="block text-sm/6 font-medium text-gray-900">Country</label>
+                    <label for="nationality" class="block text-sm/6 font-medium text-gray-900">Country</label>
                     <div class="mt-2">
-                        <select id="country" name="nationality" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm/6">
+                        <select id="country" name="nationality" autocomplete="country-name"
+                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm/6">
                             <option disabled selected>Select your country</option>
-                            <option value="Indonesia" {{ old('country') == 'Indonesia' ? 'selected' : '' }}>Indonesia</option>
-                            <option value="Yemen" {{ old('country') == 'Yemen' ? 'selected' : '' }}>Yemen</option>
-                            <option value="Other country" {{ old('country') == 'Other country' ? 'selected' : '' }}>Other country</option>
+                            <option value="Indonesia" {{ old('nationality', $scholarship->nationality ?? '') == 'Indonesia' ? 'selected' : '' }}>Indonesia</option>
+                            <option value="Yemen" {{ old('nationality', $scholarship->nationality ?? '') == 'Yemen' ? 'selected' : '' }}>Yemen</option>
+                            <option value="Other country" {{ old('nationality', $scholarship->nationality ?? '') == 'Other country' ? 'selected' : '' }}>Other country</option>
                         </select>
                         @error('nationality')
                         <span class="text-red-500 text-sm">{{ $message }}</span>

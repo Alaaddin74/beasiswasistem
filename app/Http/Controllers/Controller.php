@@ -78,14 +78,14 @@ class Controller extends BaseController
         // dd($request->all());
 
         // Convert date to YYYY-MM-DD format
-        $dateOfBirth = Carbon::createFromFormat('m/d/Y', $request->input('birthday'))->format('Y-m-d');
+        // $dateOfBirth = Carbon::createFromFormat('m/d/Y', $request->input('birthday'))->format('Y-m-d');
 
         $user = auth()->user();
         /** @var \App\Models\User $user */
         $user->update([
             'user_id' => auth()->id(),
             'name' => $request->input('name'),
-            'date_of_birth' => $dateOfBirth,
+            'date_of_birth' => $request->input('birthday'),
             'gender' => $request->input('gender'),
             'nationality' => $request->input('nationality'),
             'email' => $request->input('email'),

@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ScholarshipController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\manageApplications;
 use Illuminate\Support\Facades\Route;
 
 
@@ -13,6 +14,15 @@ Route::get('/', function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/home', [AdminController::class, 'home'])->name('admin.home');
     Route::resource('/admin/scholarships', ScholarshipController::class);
+    Route::get('/admin/scholarshipform', [AdminController::class, 'scholarshipForm'])->name('admin.scholarship');
+    Route::get('/admin/editScholarshipform/{id}', [AdminController::class, 'editScholarshipForm'])->name('admin.editScholarship');
+    Route::put('/admin/scholarships/update/{id}', [AdminController::class, 'updateScholarship'])->name('scholarships.update');
+    Route::delete('/admin/scholarshipform/{id}', [AdminController::class, 'destroy'])->name('scholarship.admin.destroy');
+    Route::get('/admin/scholarships/create', [AdminController::class, 'createingView'])->name('admin.addScholarship');
+    Route::post('/admin/scholarships/store', [AdminController::class, 'store'])->name('scholarships.store');
+
+    Route::resource('manageApplications', manageApplications::class);
+
 });
 
 Route::middleware(['auth', 'user'])->group(function () {
