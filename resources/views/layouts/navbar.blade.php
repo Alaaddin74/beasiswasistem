@@ -4,8 +4,9 @@
             <div class="flex space-x-7">
                 <!-- Website Logo -->
                 <div>
-                    <a href="{{ route('home') }}" class="flex items-center py-4">
-                        <span class="font-semibold text-gray-500 text-lg">Your Logo</span>
+                    <a href="{{ route('home') }}"  class="flex items-center py-4">
+                        <img class="h-12 w-full mr-2" src="https://img.freepik.com/premium-vector/education-logo-icon-design-vector-illustration_1094201-561.jpg" alt="">
+                        {{-- <span class="font-semibold text-gray-500 text-lg">Your Logo</span> --}}
                     </a>
                 </div>
 

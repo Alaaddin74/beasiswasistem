@@ -10,8 +10,41 @@
     </div>
 @endif
 <h1>home admin</h1>
-<form action="{{ route('logout') }}" method="POST" class="d-flex" role="search">
-    @csrf
-    <button class="btn btn-danger" type="submit">Logout</button>
-</form>
+
+<div class=" w-full flex flex-wrap justify-between  p-6 bg-white   border  rounded-lg shadow  ">
+    <a href="#" class=" h-40 w-1/3 flex flex-col justify-between items-center  max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+        <h5 class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Available Applications</h5>
+        <h3 class="font-normal text-2xl  text-gray-700 dark:text-gray-400">{{$applications}}</h3>
+    </a>
+    <a href="#" class="h-40 w-1/3  flex flex-col justify-between items-center  max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+        <h5 class=" text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Available Scholarships</h5>
+        <p class="font-normal text-2xl  text-gray-700 dark:text-gray-400">{{$scholarships}}</p>
+    </a>
+    <a href="#" class="h-40 w-1/3  flex flex-col justify-between items-center  max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+        <h5 class=" text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Available Users</h5>
+        <p class="font-normal text-2xl  text-gray-700 dark:text-gray-400">{{$users}}</p>
+    </a>
+
+    <a href="#" class=" h-40 w-1/3 flex flex-col justify-between items-center  max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+        <h5 class="text-2xl font-bold tracking-tight text-green-900 dark:text-green-300">Applications Accepted </h5>
+        <h3 class="font-normal text-2xl  text-gray-700 dark:text-gray-400">{{$accepted}}</h3>
+    </a>
+    <a href="#" class="h-40 w-1/3  flex flex-col justify-between items-center  max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+        <h5 class=" text-2xl font-bold tracking-tight text-gray-900 dark:text-red-400">Applications Rejected </h5>
+        <p class="font-normal text-2xl  text-gray-700 dark:text-gray-400">{{$rejected}}</p>
+    </a>
+    <a href="#" class="h-40 w-1/3  flex flex-col justify-between items-center  max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+        <h5 class=" text-2xl font-bold tracking-tight text-gray-900 dark:text-yellow-200">Applications Pending</h5>
+        <p class="font-normal text-2xl  text-gray-700 dark:text-gray-400">{{$pending}}</p>
+    </a>
+</div>
+
+
+
 @endsection

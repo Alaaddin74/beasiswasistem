@@ -4,15 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Scholarship;
+use App\Models\ScholarshipApplication;
+use App\Models\User;
 
 class AdminController extends Controller
 {
     //
     public function home()
     {
-        $user = auth()->user();
+        $users = User::where('role', 'user')->count();
+        $scholarships = Scholarship::all()->count();
+        $applications = ScholarshipApplication::all()->count();
+        $accepted = ScholarshipApplication::where('status','approved')->count();
+        $pending = ScholarshipApplication::where('status','pending')->count();
+        $rejected = ScholarshipApplication::where('status','rejected')->count();
 
-        return view('admin.home', compact('user'));
+        // dd($scholarships);
+
+        return view('admin.home', compact('users','scholarships','applications','accepted','pending','rejected'));
     }
 
 

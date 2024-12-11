@@ -61,24 +61,35 @@
                 <p class="mt-2 text-gray-700">{{ $application->current_gpa }}</p>
             </div>
 
-            <div class="sm:col-span-3">
+            <div class="sm:col-span-6">
                 <label class="block text-sm font-medium text-gray-900">Past Education</label>
                 <p class="mt-2 text-gray-700">{{ $application->past_education }}</p>
             </div>
 
-            <div class="sm:col-span-3">
-                <label class="block text-sm font-medium text-gray-900">Status</label>
+            <div class="sm:col-span-6">
                 <form action="{{ route('manageApplications.update', $application->id) }}" method="POST">
+
                     @csrf
                     @method('PUT')
-                    <select name="status" id="status" class="mt-2 block w-28 rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                        <option value="pending" {{ $application->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                        <option value="approved" {{ $application->status == 'approved' ? 'selected' : '' }}>Approved</option>
-                        <option value="rejected" {{ $application->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
-                    </select>
-                    @error('status')
+                    <div class="flex justify-between">
+                        <div class="w-full">
+
+                        <label class="block text-sm font-medium text-gray-900">Status</label>
+                        <select name="status" id="status" class="mt-2 block w-28 rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="pending" {{ $application->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                            <option value="approved" {{ $application->status == 'approved' ? 'selected' : '' }}>Approved</option>
+                            <option value="rejected" {{ $application->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                        </select>
+                        @error('status')
                         <span class="text-red-500 text-sm">{{ $message }}</span>
-                    @enderror
+                        @enderror
+                    </div>
+                    <div class="w-full flex flex-col">
+                        <label for="message">Notification</label>
+                        <textarea name="message" id="message" class=" border-2 p-2" cols="30" rows="5">{{$messagesText}}</textarea>
+
+                    </div>
+                </div>
 
                     <button type="submit" class="mt-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">Update Status</button>
                 </form>

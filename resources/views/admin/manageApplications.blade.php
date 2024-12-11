@@ -5,7 +5,11 @@
 @section('contents')
 <h1>Manage applications</h1>
 <h1 class="text-xl font-semibold mb-4">Applications</h1>
-
+@if (session('success'))
+    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mx-4 mt-4" role="alert">
+        <span class="block sm:inline">{{ session('success') }}</span>
+    </div>
+@endif
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -32,7 +36,7 @@
                     </td>
                     <td class="px-6 py-4 flex gap-3">
                         <a href="{{route('manageApplications.edit', $application->id)}}" class="text-blue-600 hover:underline">Edit</a>
-                        <form action="#" method="POST" onsubmit="return confirm('Are you sure?')">
+                        <form action="{{route('manageApplications.destroy', $application->id)}}" method="POST" onsubmit="return confirm('Are you sure?')">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-red-600 hover:underline">Delete</button>
