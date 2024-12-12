@@ -5,6 +5,16 @@
 @section('contents')
 <div class="space-y-12 ml-10">
     <div class="border-b border-gray-900/10 pb-12">
+        @if (session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mx-4 mt-4" role="alert">
+            <span class="block sm:inline">{{ session('success') }}</span>
+        </div>
+    @endif
+    @if (session('error'))
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mx-4 mt-4" role="alert">
+        <span class="block sm:inline">{{ session('error') }}</span>
+    </div>
+@endif
         <form action="{{ route('scholarships.dafter.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="border-b border-gray-900/10 pb-12">

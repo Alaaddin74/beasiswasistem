@@ -16,6 +16,10 @@ class ScholarshipController extends Controller
 
     public function store(Request $request, )
     {
+        if (ScholarshipApplication::where([['scholarship_id', $request->scholarshipId],['user_id', auth()->user()->id]])->exists()){
+            return redirect()->back()->with('error', 'You have already applied!');
+        }
+
         $request->validate([
             'scholarshipId' => 'required|exists:scholarships,id',
             'current_institution' => 'required|string|max:255',
@@ -24,6 +28,8 @@ class ScholarshipController extends Controller
             'past_education' => 'required|string',
             'documents.*' => 'file|mimes:pdf,jpg,png|max:4048',
         ]);
+
+
 
         // Handle file uploads
         $uploadedFiles = [];

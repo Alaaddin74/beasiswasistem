@@ -36,7 +36,7 @@ Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/applications/{id}/edit', [ScholarshipController::class, 'edit'])->name('applications.edit');
     Route::put('/applications/{id}', [ScholarshipController::class, 'update'])->name('applications.update');
     Route::delete('/applications/{id}', [ScholarshipController::class, 'destroy'])->name('applications.destroy');
-
+    Route::post('/notification/mark_read/{id}', [Controller::class, 'changeSeenStates'])->name('changeSeenStates');
 });
 
 Route::group(['middleware' => 'guest'], function () {

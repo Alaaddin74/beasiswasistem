@@ -13,10 +13,10 @@
                 <!-- Primary Navigation -->
                 @if(auth()->user()->role === 'user')
                 <div class="hidden md:flex items-center space-x-1">
-                    <a href="#" class="py-4 px-2 text-gray-500 hover:text-gray-900 transition duration-300">Home</a>
+                    {{-- <a href="#" class="py-4 px-2 text-gray-500 hover:text-gray-900 transition duration-300">Home</a>
                     <a href="#" class="py-4 px-2 text-gray-500 hover:text-gray-900 transition duration-300">About</a>
                     <a href="#" class="py-4 px-2 text-gray-500 hover:text-gray-900 transition duration-300">Services</a>
-                    <a href="#" class="py-4 px-2 text-gray-500 hover:text-gray-900 transition duration-300">Contact</a>
+                    <a href="#" class="py-4 px-2 text-gray-500 hover:text-gray-900 transition duration-300">Contact</a> --}}
                 </div>
                 @else
                 <div class="hidden md:flex items-center space-x-1">
@@ -41,7 +41,7 @@
                         </button>
                         <!-- Dropdown menu -->
                         <div id="dropdown" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg hidden">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                            {{-- <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a> --}}
                             <a href="{{ route('logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
@@ -73,10 +73,6 @@
     <!-- Mobile Menu -->
     <div class="hidden mobile-menu md:hidden">
         <ul class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <li><a href="#" class="block px-2 py-4 text-sm hover:bg-gray-100">Home</a></li>
-            <li><a href="#" class="block px-2 py-4 text-sm hover:bg-gray-100">About</a></li>
-            <li><a href="#" class="block px-2 py-4 text-sm hover:bg-gray-100">Services</a></li>
-            <li><a href="#" class="block px-2 py-4 text-sm hover:bg-gray-100">Contact</a></li>
             @guest
                 <li><a href="{{ route('login') }}" class="block px-2 py-4 text-sm hover:bg-gray-100">Login</a></li>
                 <li><a href="{{ route('register') }}" class="block px-2 py-4 text-sm hover:bg-gray-100">Register</a></li>

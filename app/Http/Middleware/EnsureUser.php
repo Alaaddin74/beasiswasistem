@@ -16,9 +16,11 @@ class EnsureUser
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::check() && Auth::user()->role !== 'admin'){
+        if (Auth::check() && Auth::user()->role !== 'admin') {
             return $next($request);
+        } elseif (Auth::check() && Auth::user()->role === 'admin') {
+            return  redirect()->route('admin.home');
         }
-        return redirect()->route('login')->with('error','Access denied');
+        return redirect()->route('login')->with('error', 'Access denied');
     }
 }

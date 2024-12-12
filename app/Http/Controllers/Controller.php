@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\User;
 use App\Models\Scholarship;
 use App\Models\ScholarshipApplication; // Add this
@@ -19,16 +20,12 @@ class Controller extends BaseController
 
     public function index()
     {
-        $users = User::all();
-
         $user = User::find(Auth::id());
-        $scholarshipApplications = $user
-        ->scholarshipApplications() // Remove the parentheses
-        ->with('scholarship') // Eager load the scholarship relationship
-        ->get();
+        $notifications = Notification::where("user_id", $user->id)->orderBy('created_at', 'DESC')->get();
+        $notificationsIndcatior = $notifications->where('seen', 0)->count();
+        $notificationsIndcatior = $notificationsIndcatior > 0 ? true : false;
 
-        return view('mahasiswa.home', compact('scholarshipApplications'));
-
+        return view('mahasiswa.home', compact('notifications', 'notificationsIndcatior'));
     }
 
     public function scholarship()
@@ -49,9 +46,9 @@ class Controller extends BaseController
 
         $user = User::find(Auth::id());
         $scholarshipApplications = $user
-        ->scholarshipApplications() // Remove the parentheses
-        ->with('scholarship') // Eager load the scholarship relationship
-        ->get();
+            ->scholarshipApplications() // Remove the parentheses
+            ->with('scholarship') // Eager load the scholarship relationship
+            ->get();
 
         return view('mahasiswa.application', compact('scholarshipApplications'));
         // return view('mahasiswa.application');
@@ -94,5 +91,13 @@ class Controller extends BaseController
         ]);
 
         return redirect()->route('profile')->with('success', 'Application submitted successfully!');
+    }
+
+    public function changeSeenStates($id)
+    {
+        $notification = Notification::findorfail($id);
+        $notification->seen = 1;
+        $notification->save();
+        return redirect()->route('home');
     }
 }
